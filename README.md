@@ -2,8 +2,8 @@
 
 Code to send data from Arduino Uno to ESP32 and from ESP32 to Arduino Uno.
 
-Since the Arduino doesn't have a second serial port, we need to "emulate" a second one with the "SoftwareSerial" library.
-The ESP32 does has another serial port so no need to use that library for this purpose.
+Since the Arduino doesn't have a second UART, we need to "emulate" a second one with the "SoftwareSerial" library.
+The ESP32 does has another UART so no need to use that library for this purpose.
 
 **Wiring:**
 
