@@ -1,11 +1,12 @@
 #include <SoftwareSerial.h>
 
-const byte rxPin = 2; //Pino RX no Arduino
-const byte txPin = 3; //Pino TX no Arduino
-
-//Como o Arduino possui apenas uma porta Serial nativa
-//é necessário criar uma Serial "Emulada" para enviar os dados
-//para a ESP com o auxílio da biblioteca Software Serial.
+const byte rxPin = 2; //RX Pin - Arduino
+const byte txPin = 3; //TX Pin - Arduino
+/**
+Since the Arduino only has one serial port available,
+its needed to create an "emulated" serial port to send and receive the data
+to the ESP32 with the "SoftwareSerial" library.
+*/
 
 SoftwareSerial SerialEmulado(rxPin, txPin);
 
@@ -20,14 +21,13 @@ String mensagem;
 void loop() {
   delay(1000);
   
-  //Mensagem que irá para a serial da ESP
-  SerialEmulado.println("Arduino para ESP");
+  SerialEmulado.println("Arduino para ESP"); //Message that will be sent to the ESP32
   delay(1000);
   
-  if (SerialEmulado.available() > 0) //Se a serial da ESP estiver disponível
+  if (SerialEmulado.available() > 0) //If ESP32's serial is available
   {
-    mensagem = SerialEmulado.readString(); //mensagem será o que estiver escrito na serial da ESP
-    Serial.println(mensagem); //Escreve no serial monitor do Arduino o que está sendo enviado pela ESP
+    mensagem = SerialEmulado.readString(); //message coming from the ESP32
+    Serial.println(mensagem); //Print's on ESP32's serial monitor the message from ESP32
   }
 
 }
